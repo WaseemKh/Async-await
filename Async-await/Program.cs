@@ -4,20 +4,23 @@ using System.Threading.Tasks;
 
 public class Program
 {
-	 public static  void  Main()
-	{
-		LongProcess();
-		ShortProcess();
+    public static async Task Main()
+    {
+        Task<int> result = LongProcess();
+        ShortProcess();
+        var val = await result; //wait until return value
+        Console.WriteLine("result" + val);
 
-		Console.ReadKey();
-	}
+       
+        Console.ReadKey();
+    }
 
-    public static async void LongProcess()
+    public static async Task<int> LongProcess()
     {
         Console.WriteLine("Long Process Started....");
-         await Task.Delay(3000);
+        await Task.Delay(5000);
         Console.WriteLine("3 second Later");
-        Console.WriteLine("End Long Process !");
+        return 10;
     }
     static void ShortProcess()
     {
