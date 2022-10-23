@@ -15,7 +15,7 @@ public class Program
     public static async void LongProcess()
     {
         Console.WriteLine("Long Process Started....");
-         Thread.Sleep(3000);
+         await Task.Delay(3000);
         Console.WriteLine("3 second Later");
         Console.WriteLine("End Long Process !");
     }
