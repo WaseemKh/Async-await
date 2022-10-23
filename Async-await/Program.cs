@@ -6,28 +6,37 @@ public class Program
 {
     public static async Task Main()
     {
-        Task<int> result = LongProcess();
-        ShortProcess();
-        var val = await result; //wait until return value
-        Console.WriteLine("result" + val);
+        Task<long> num1 = LongProcess();
 
-       
+       // Task<long> num2 = ShortProcess();
+
+        var total = await num1 + 3;
+        Console.WriteLine($"Total is :"+ total);
         Console.ReadKey();
     }
 
-    public static async Task<int> LongProcess()
+    public static  async Task<long> LongProcess()
     {
-        Console.WriteLine("Long Process Started....");
-        await Task.Delay(5000);
-        Console.WriteLine("3 second Later");
-        return 10;
-    }
-    static void ShortProcess()
-    {
-        Console.WriteLine("Start SHORT Process ----");
-        Console.WriteLine("END SHORT Process ----");
+        List<int> list = new List<int>();
+     
+        for (var i = 0; i <= 10; i++)
+        {
 
+            list.Add(i);
+        }
+
+        //get total for it 
+
+        long total = 0;
+        list.ForEach(i =>
+        {
+            total += i;
+        });
+        return total;
+
+        //can use this (n*n+1) /2 however i want use async and await just
     }
+   
 }
 
 
